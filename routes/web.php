@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//routes untuk hrd
+Route::group(['middleware' => 'role:hrd'], function () {
+
+});
+
+//routes untuk kandidat
+Route::group(['middleware' => 'role:kandidat'], function () {
+
+});
