@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +15,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+})->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', function(){
+    return view('registrasi');
 });
+Route::post('/registrasi', [AuthController::class, 'registrasi']);
+Route::get('/logout', [AuthController::class, 'logout']);
 
 //routes untuk hrd
 Route::group(['middleware' => 'role:hrd'], function () {
-
+    Route::get('/hrd/dashboard', function(){
+        return view('admin.dashboard');
+    });
+    Route::get('/hrd/profile', function(){
+        return view('admin.profile');
+    });
 });
 
 //routes untuk kandidat
 Route::group(['middleware' => 'role:kandidat'], function () {
-
+    Route::get('/kandidat/dashboard', function(){
+        return view('kandidat.dashboard');
+    });
+    Route::get('/kandidat/profile', function(){
+        return view('kandidat.profile');
+    });
 });
