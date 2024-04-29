@@ -39,7 +39,7 @@ class AuthController extends Controller
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'email' => 'required|email|unique:users,email',
-            'nomor_hp' => 'require|numeric',
+            'nomor_hp' => 'required|numeric',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -54,7 +54,7 @@ class AuthController extends Controller
         $data->password = Hash::make($request->password);
         $data->save();
 
-        return view('login')->with('success', 'Anda Berhasil Melakukan Registrasi, Silahkan Login');
+        return redirect('/')->with('success', 'Anda Berhasil Melakukan Registrasi, Silahkan Login');
     }
 
     public function logout()
