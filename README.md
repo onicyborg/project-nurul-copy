@@ -51,3 +51,5 @@ php artisan storage:link
 ```bash
 php artisan serve
 ```
+
+- salin link yang muncul ke browser anda
