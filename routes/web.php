@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,4 +44,9 @@ Route::group(['middleware' => 'role:kandidat'], function () {
     Route::get('/kandidat/profile', function(){
         return view('kandidat.profile');
     });
+    Route::get('/kandidat/update-profile', function(){
+        return view('kandidat.update_profile');
+    });
+    Route::put('/update/profile', [ProfileController::class, 'update']);
+    Route::put('/update/password', [ProfileController::class, 'update_password']);
 });

@@ -98,6 +98,17 @@
         </script>
     @endif
 
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: 'Berhasil Registrasi',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        </script>
+    @endif
+
 
 </body>
 
