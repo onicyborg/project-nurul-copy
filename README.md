@@ -40,6 +40,10 @@ php artisan key:generate
 php artisan migrate
 ```
 
+```bash
+php artisan db:seed UsersSeeders
+```
+
 - lalu ketik perintah
 
 ```bash
