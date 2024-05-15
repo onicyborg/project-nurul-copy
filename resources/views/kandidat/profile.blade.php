@@ -11,56 +11,81 @@
         // Menghitung umur
         $umur = $sekarang->diffInYears($tanggal_lahir);
     @endphp
-    <div class="row">
-        <div class="col-md-4">
-            @if (Auth::user()->file_foto != '')
-                <img src="{{ asset(Auth::user()->file_foto) }}" alt="User Profile" class="img-fluid rounded-circle"
-                    style="height: 250px;">
-            @else
-                <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="User Profile" class="img-fluid rounded-circle"
-                    style="height: 250px;">
-            @endif
-        </div>
-        <div class="col-md-8">
-            <h1>{{ Auth::user()->name }}</h1>
-            <p>Kandidat</p>
-            <ul class="list-unstyled">
-                <li><strong>Email:</strong> {{ Auth::user()->email }}</li>
-                <li><strong>Nomor HP:</strong> {{ Auth::user()->nomor_hp }}</li>
-                <li><strong>Tempat Lahir:</strong> {{ Auth::user()->tempat_lahir }}</li>
-                <li><strong>Tanggal Lahir:</strong> {{ Auth::user()->tanggal_lahir }}</li>
-                <li><strong>Umur:</strong> {{ $umur }}</li>
-                <li><strong>Gender:</strong> {{ Auth::user()->gender }}</li>
-                <li><strong>Pendidikan Terakhir:</strong>
-                    @if (Auth::user()->pendidikan_terakhir != '')
-                        {{ Auth::user()->pendidikan_terakhir }}
+    <div class="card p-5">
+        <div>
+            <div class="row">
+                <div class="col-md-10">
+                    <button type="button" class="btn btn-link position-relative text-decoration-none">
+                        <h1>{{ Auth::user()->name }}</h1>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            kandidat
+                        </span>
+                    </button>
+                    <h6 class="ps-3">
+                        @if (Auth::user()->alamat != '')
+                            {{ Auth::user()->alamat }}
+                        @else
+                            -
+                        @endif
+                    </h6>
+                    <div class="d-flex ps-3">
+                        <a href="{{ asset(Auth::user()->file_cv) }}" download class="btn btn-icon btn-secondary me-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download CV">
+                            <span class="ti ti-file"></span>
+                        </a>
+                        <a href="{{ asset(Auth::user()->file_dokumen_pendukung) }}" download class="btn btn-secondary me-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Dokumen Pendukung">
+                            <i class="ti ti-files"></i>
+                        </a>
+                        <a href="{{ asset(Auth::user()->file_foto) }}" download class="btn btn-secondary me-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Foto">
+                            <i class="ti ti-photo"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-end">
+                    @if (Auth::user()->file_foto != '')
+                        <img src="{{ asset(Auth::user()->file_foto) }}" alt="User Profile"
+                            class="img-fluid rounded-circle pe-3" style="height: 120px;">
                     @else
-                        -
+                        <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="User Profile"
+                            class="img-fluid rounded-circle pe-3" style="height: 120px;">
                     @endif
-                </li>
-                <li><strong>Alamat:</strong>
-                    @if (Auth::user()->alamat != '')
-                        {{ Auth::user()->alamat }}
-                    @else
-                        -
-                    @endif
-                </li>
-            </ul>
-            <a href="{{ asset(Auth::user()->file_cv) }}" download class="btn btn-secondary">
-                <i class="ti ti-download"></i> CV
-            </a>
-            <a href="{{ asset(Auth::user()->file_dokumen_pendukung) }}" download class="btn btn-secondary">
-                <i class="ti ti-download"></i> Dokumen Pendukung
-            </a>
-            <a href="{{ asset(Auth::user()->file_foto) }}" download class="btn btn-secondary">
-                <i class="ti ti-download"></i> Photos
-            </a>
+                </div>
 
-            <a href="/kandidat/update-profile" class="btn btn-secondary">Update Profile</a>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Ubah Password
-            </button>
+            </div>
+
+
+            <hr>
+            <div class="ps-3">
+                <strong>Contact Info</strong>
+                <p>{{ Auth::user()->email }} - {{ Auth::user()->nomor_hp }}</p>
+            </div>
+            <div class="ps-3">
+                <strong>General Information</strong>
+                <ul class="list-unstyled">
+                    <li>Tempat Lahir: {{ Auth::user()->tempat_lahir }}</li>
+                    <li>Tanggal Lahir: {{ Auth::user()->tanggal_lahir }}</li>
+                    <li>Tempat Lahir: {{ Auth::user()->tanggal_lahir }}</li>
+                    <li>Umur: {{ $umur }}</li>
+                    <li>Pendidikan Terakhir:
+                        @if (Auth::user()->pendidikan_terakhir != '')
+                            {{ Auth::user()->pendidikan_terakhir }}
+                        @else
+                            -
+                        @endif
+                    </li>
+                </ul>
+            </div>
+            <div class="ps-3">
+                <a href="/kandidat/update-profile" class="btn btn-secondary ps-3">Update Profile</a>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Ubah Password
+                </button>
+            </div>
+
         </div>
+    </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
