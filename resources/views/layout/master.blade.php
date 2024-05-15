@@ -35,7 +35,9 @@
                             <span class="hide-menu">Main Menu</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" @if (Auth::user()->role == 'hrd') href="/hrd/dashboard" @else href="/kandidat/dashboard" @endif aria-expanded="false">
+                            <a class="sidebar-link"
+                                @if (Auth::user()->role == 'hrd') href="/hrd/dashboard" @else href="/kandidat/dashboard" @endif
+                                aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
@@ -51,7 +53,9 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" @if (Auth::user()->role == 'hrd') href="/hrd/profile" @else href="/kandidat/profile" @endif aria-expanded="false">
+                            <a class="sidebar-link"
+                                @if (Auth::user()->role == 'hrd') href="/hrd/profile" @else href="/kandidat/profile" @endif
+                                aria-expanded="false">
                                 <span>
                                     <i class="ti ti-user"></i>
                                 </span>
@@ -83,8 +87,14 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../assets/images/profile/user-1.jpg" alt="" width="35"
-                                        height="35" class="rounded-circle">
+
+                                    @if (Auth::user()->file_foto != '')
+                                        <img src="{{ asset(Auth::user()->file_foto) }}" alt="" width="35"
+                                            height="35" class="rounded-circle">
+                                    @else
+                                        <img src="../assets/images/profile/user-1.jpg" alt="" width="35"
+                                            height="35" class="rounded-circle">
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
