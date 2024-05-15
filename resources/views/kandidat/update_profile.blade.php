@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('title')
+    Update Profile
+@endsection
+
 @section('content')
     <div class="container mt-5">
         <h1>Update Profile</h1>

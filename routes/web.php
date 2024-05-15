@@ -49,4 +49,7 @@ Route::group(['middleware' => 'role:kandidat'], function () {
     });
     Route::put('/update/profile', [ProfileController::class, 'update']);
     Route::put('/update/password', [ProfileController::class, 'update_password']);
+    Route::get('/test', function(){
+        return view('kandidat.test');
+    });
 });

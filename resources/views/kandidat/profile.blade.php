@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('title')
+    Profile
+@endsection
+
 @section('content')
     @php
         // Mendapatkan tanggal lahir dari user

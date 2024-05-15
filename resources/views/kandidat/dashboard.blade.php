@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('title')
+    Dashboard
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-lg-8 d-flex align-items-strech">
