@@ -12,10 +12,10 @@
             </h1>
         </div>
         <div class="card p-5">
-            <div class="table-responsive">
+            <div class="table-responsive rounded-3">
                 <table class="table table-striped">
                     <thead>
-                        <tr class="text-center">
+                        <tr class="text-center bg-primary text-white">
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Skor</th>
@@ -25,11 +25,12 @@
                     <tbody>
                         @foreach ($data as $no => $item)
                             <tr class="text-center">
-                                <th scope="row">{{ $no+1 }}</th>
+                                <th scope="row">{{ $no + 1 }}</th>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->hasil_akhir }}</td>
                                 <td>
-                                    <a href="/hrd/detail-kandidat/{{ $item->user->id }}" class="btn btn-secondary">Detail</a>
+                                    <a href="/hrd/detail-kandidat/{{ $item->user->id }}"
+                                        class="btn btn-primary text-white btn-sm">Detail</a>
                                 </td>
                             </tr>
                         @endforeach

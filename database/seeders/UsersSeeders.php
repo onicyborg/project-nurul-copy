@@ -30,7 +30,7 @@ class UsersSeeders extends Seeder
                 'name' => 'Akhmad Fauzi',
                 'email' => 'akhmadfauzy40@gmail.com',
                 'nomor_hp' => '081347890520',
-                'password' => Hash::make('123kucingberanak'),
+                'password' => Hash::make('inipassword'),
                 'role' => 'kandidat',
                 'gender' => 'pria',
                 'tempat_lahir' => 'Martapura',

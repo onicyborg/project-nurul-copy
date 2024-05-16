@@ -21,44 +21,45 @@
                 <div class="col-md-10">
                     <button type="button" class="btn btn-link position-relative text-decoration-none">
                         <h1>{{ $data->name }}</h1>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            kandidat
-                        </span>
                     </button>
                     <h6 class="ps-3">
                         {{ $data->alamat }}
                     </h6>
                     <div class="d-flex ps-3">
-                        <a href="{{ asset($data->file_cv) }}" download class="btn btn-icon btn-secondary me-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Download CV">
+                        <a href="{{ asset($data->file_cv) }}" download class="btn btn-icon btn-primary me-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download CV">
                             <span class="ti ti-file"></span>
                         </a>
-                        <a href="{{ asset($data->file_dokumen_pendukung) }}" download class="btn btn-secondary me-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Download Dokumen Pendukung">
+                        <a href="{{ asset($data->file_dokumen_pendukung) }}" download class="btn btn-primary me-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Dokumen Pendukung">
                             <i class="ti ti-files"></i>
                         </a>
-                        <a href="{{ asset($data->file_foto) }}" download class="btn btn-secondary me-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Download Foto">
+                        <a href="{{ asset($data->file_foto) }}" download class="btn btn-primary me-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Foto">
                             <i class="ti ti-photo"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-md-2 d-flex justify-content-end">
                     @if (Auth::user()->file_foto != '')
-                        <img src="{{ asset($data->file_foto) }}" alt="User Profile"
-                            class="img-fluid rounded-circle pe-3" style="height: 120px;">
+                        <img src="{{ asset($data->file_foto) }}" alt="User Profile" class="img-fluid rounded-circle pe-3"
+                            style="height: 120px;">
                     @else
                         <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="User Profile"
                             class="img-fluid rounded-circle pe-3" style="height: 120px;">
                     @endif
                 </div>
             </div>
-
-
             <hr>
             <div class="ps-3">
                 <strong>Contact Info</strong>
                 <p>{{ $data->email }} - {{ $data->nomor_hp }}</p>
+            </div>
+            <div class="ps-3 mb-3 mt-2">
+                <strong>Status</strong>
+                <div class="d-flex">
+                    <div class="btn btn-sm btn-danger rounded-pill disabled mt-2">Kandidat</div>
+                </div>
             </div>
             <div class="ps-3">
                 <strong>General Information</strong>
@@ -83,5 +84,4 @@
 @endsection
 
 @push('scripts')
-
 @endpush

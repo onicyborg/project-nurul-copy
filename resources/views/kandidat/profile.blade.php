@@ -21,9 +21,6 @@
                 <div class="col-md-10">
                     <button type="button" class="btn btn-link position-relative text-decoration-none">
                         <h1>{{ Auth::user()->name }}</h1>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            kandidat
-                        </span>
                     </button>
                     <h6 class="ps-3">
                         @if (Auth::user()->alamat != '')
@@ -33,15 +30,15 @@
                         @endif
                     </h6>
                     <div class="d-flex ps-3">
-                        <a href="{{ asset(Auth::user()->file_cv) }}" download class="btn btn-icon btn-secondary me-2"
+                        <a href="{{ asset(Auth::user()->file_cv) }}" download class="btn btn-icon btn-primary me-2"
                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download CV">
                             <span class="ti ti-file"></span>
                         </a>
-                        <a href="{{ asset(Auth::user()->file_dokumen_pendukung) }}" download class="btn btn-secondary me-2"
+                        <a href="{{ asset(Auth::user()->file_dokumen_pendukung) }}" download class="btn btn-primary me-2"
                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Dokumen Pendukung">
                             <i class="ti ti-files"></i>
                         </a>
-                        <a href="{{ asset(Auth::user()->file_foto) }}" download class="btn btn-secondary me-2"
+                        <a href="{{ asset(Auth::user()->file_foto) }}" download class="btn btn-primary me-2"
                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download Foto">
                             <i class="ti ti-photo"></i>
                         </a>
@@ -66,6 +63,13 @@
                 <p>{{ Auth::user()->email }} - {{ Auth::user()->nomor_hp }}</p>
             </div>
             <div class="ps-3">
+                <strong>Status</strong>
+                <div class="d-flex">
+                    <div class="btn btn-sm btn-danger rounded-pill disabled mt-2s">Kandidat</div>
+                </div>
+            </div>
+            <br>
+            <div class="ps-3">
                 <strong>General Information</strong>
                 <ul class="list-unstyled">
                     <li>Tempat Lahir: {{ Auth::user()->tempat_lahir }}</li>
@@ -81,8 +85,8 @@
                 </ul>
             </div>
             <div class="ps-3">
-                <a href="/kandidat/update-profile" class="btn btn-secondary ps-3">Update Profile</a>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a href="/kandidat/update-profile" class="btn btn-primary ps-3">Update Profile</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Ubah Password
                 </button>
             </div>
@@ -130,7 +134,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
