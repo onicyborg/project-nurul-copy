@@ -27,15 +27,19 @@
                 Pastikan untuk menjawab setiap pertanyaan dengan jujur dan sebaik mungkin. Hasil dari tes ini akan menjadi
                 bagian penting dalam proses seleksi karyawan kami. Semoga sukses dan selamat mengerjakan!
             </p>
-            @if (Auth::user()->results->count() > 0)
+            @if (Auth::user()->results && Auth::user()->results->count() > 0)
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-secondary" disabled="disabled">Mulai</button>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <p class="fw-bold"><span class="text-danger">*</span>Anda telah menyelesaikan test</p>
                 </div>
             @else
                 <div class="d-flex justify-content-center">
                     <a href="/soal" class="btn btn-secondary">Mulai</a>
                 </div>
             @endif
+
         </div>
     </div>
 @endsection

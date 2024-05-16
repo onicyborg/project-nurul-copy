@@ -185,9 +185,9 @@
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="pertanyaan_6" id="pertanyaan_6_b"
+                        <input class="form-check-input" type="radio" name="pertanyaan_6" id="pertanyaan_6_c"
                             value="3" {{ old('pertanyaan_6') == 3 ? 'checked' : '' }}>
-                        <label class="form-check-label" for="pertanyaan_6_b">
+                        <label class="form-check-label" for="pertanyaan_6_c">
                             Kadang-kadang
                         </label>
                     </div>

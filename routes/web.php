@@ -32,7 +32,10 @@ Route::group(['middleware' => 'role:hrd'], function () {
     Route::get('/hrd/dashboard', function(){
         return view('admin.dashboard');
     });
-    Route::get('/hrd/profile', function(){
+    Route::get('/hrd/list-kandidat-terbaik', function(){
+        return view('admin.list-kandidat');
+    });
+    Route::get('/hrd/detail-kandidat/id', function(){
         return view('admin.profile');
     });
 });
