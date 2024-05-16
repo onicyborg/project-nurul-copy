@@ -21,4 +21,11 @@ class ListController extends Controller
 
         return view('admin.profile', ['data' => $data]);
     }
+
+    public function leaderboard()
+    {
+        $data = Results::orderBy('hasil_akhir', 'desc')->take(10)->get();
+
+        return view('kandidat.dashboard', ['data' => $data]);
+    }
 }

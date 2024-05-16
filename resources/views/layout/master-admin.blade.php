@@ -52,16 +52,6 @@
                                 <span class="hide-menu">List Kandidat Terbaik</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link"
-                                @if (Auth::user()->role == 'hrd') href="/hrd/profile" @else href="/kandidat/profile" @endif
-                                aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user"></i>
-                                </span>
-                                <span class="hide-menu">Profile</span>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

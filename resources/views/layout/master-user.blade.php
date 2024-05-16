@@ -45,14 +45,6 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/test" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-article"></i>
-                                </span>
-                                <span class="hide-menu">Test Kandidat</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
                             <a class="sidebar-link"
                                 @if (Auth::user()->role == 'hrd') href="/hrd/profile" @else href="/kandidat/profile" @endif
                                 aria-expanded="false">
