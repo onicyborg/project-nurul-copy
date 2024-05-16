@@ -20,8 +20,8 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="./index.html" class="text-nowrap logo-img">
-                        <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+                    <a href="" class="text-nowrap logo-img">
+                        <img src="{{ asset('assets/images/logos/dark-logo.svg') }}" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -92,7 +92,7 @@
                                         <img src="{{ asset(Auth::user()->file_foto) }}" alt="" width="35"
                                             height="35" class="rounded-circle">
                                     @else
-                                        <img src="../assets/images/profile/user-1.jpg" alt="" width="35"
+                                        <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="" width="35"
                                             height="35" class="rounded-circle">
                                     @endif
                                 </a>

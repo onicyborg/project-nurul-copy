@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,12 +33,8 @@ Route::group(['middleware' => 'role:hrd'], function () {
     Route::get('/hrd/dashboard', function(){
         return view('admin.dashboard');
     });
-    Route::get('/hrd/list-kandidat-terbaik', function(){
-        return view('admin.list-kandidat');
-    });
-    Route::get('/hrd/detail-kandidat/id', function(){
-        return view('admin.profile');
-    });
+    Route::get('/hrd/list-kandidat-terbaik', [ListController::class, 'index']);
+    Route::get('/hrd/detail-kandidat/{id}', [ListController::class, 'detail_kandidat']);
 });
 
 //routes untuk kandidat

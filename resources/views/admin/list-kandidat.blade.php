@@ -23,14 +23,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>2.3</td>
-                            <td>
-                                <a href="/hrd/detail-kandidat/id" class="btn btn-secondary">Detail</a>
-                            </td>
-                        </tr>
+                        @foreach ($data as $no => $item)
+                            <tr class="text-center">
+                                <th scope="row">{{ $no+1 }}</th>
+                                <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->hasil_akhir }}</td>
+                                <td>
+                                    <a href="/hrd/detail-kandidat/{{ $item->user->id }}" class="btn btn-secondary">Detail</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
