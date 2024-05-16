@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout.master-user')
 
 @section('title')
     Profile
@@ -70,7 +70,6 @@
                 <ul class="list-unstyled">
                     <li>Tempat Lahir: {{ Auth::user()->tempat_lahir }}</li>
                     <li>Tanggal Lahir: {{ Auth::user()->tanggal_lahir }}</li>
-                    <li>Tempat Lahir: {{ Auth::user()->tanggal_lahir }}</li>
                     <li>Umur: {{ $umur }}</li>
                     <li>Pendidikan Terakhir:
                         @if (Auth::user()->pendidikan_terakhir != '')

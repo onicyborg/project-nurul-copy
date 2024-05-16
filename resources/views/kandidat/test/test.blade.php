@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout.master-user')
 
 @section('title')
     Test Overview
@@ -27,9 +27,15 @@
                 Pastikan untuk menjawab setiap pertanyaan dengan jujur dan sebaik mungkin. Hasil dari tes ini akan menjadi
                 bagian penting dalam proses seleksi karyawan kami. Semoga sukses dan selamat mengerjakan!
             </p>
-            <div class="d-flex justify-content-center">
-                <a href="/soal" class="btn btn-secondary">Mulai</a>
-            </div>
+            @if (Auth::user()->results->count() > 0)
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-secondary" disabled="disabled">Mulai</button>
+                </div>
+            @else
+                <div class="d-flex justify-content-center">
+                    <a href="/soal" class="btn btn-secondary">Mulai</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
@@ -43,4 +49,15 @@
 @endpush
 
 @push('scripts')
+    <script src="{{ asset('assets/js/swal.min.js') }}"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: 'Berhasil',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        </script>
+    @endif
 @endpush

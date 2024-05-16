@@ -25,20 +25,20 @@ class UsersSeeders extends Seeder
             ]
         ]);
 
-        // DB::table('users')->insert([
-        //     [
-        //         'name' => 'Akhmad Fauzi',
-        //         'email' => 'akhmadfauzy40@gmail.com',
-        //         'nomor_hp' => '081347890520',
-        //         'password' => Hash::make('123kucingberanak'),
-        //         'role' => 'kandidat',
-        //         'gender' => 'pria',
-        //         'tempat_lahir' => 'Martapura',
-        //         'tanggal_lahir' => '2001-03-10',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ]
-        // ]);
+        DB::table('users')->insert([
+            [
+                'name' => 'Akhmad Fauzi',
+                'email' => 'akhmadfauzy40@gmail.com',
+                'nomor_hp' => '081347890520',
+                'password' => Hash::make('123kucingberanak'),
+                'role' => 'kandidat',
+                'gender' => 'pria',
+                'tempat_lahir' => 'Martapura',
+                'tanggal_lahir' => '2001-03-10',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
 
     }
 }

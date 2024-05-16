@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -55,4 +56,5 @@ Route::group(['middleware' => 'role:kandidat'], function () {
     Route::get('/soal', function(){
         return view('kandidat.test.soal');
     });
+    Route::post('/submit-test', [AnswerController::class, 'submit']);
 });
