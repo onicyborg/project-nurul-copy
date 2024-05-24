@@ -30,9 +30,9 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 //routes untuk hrd
 Route::group(['middleware' => 'role:hrd'], function () {
-    Route::get('/hrd/dashboard', function(){
-        return view('admin.dashboard');
-    });
+    Route::get('/hrd/dashboard', [ListController::class, 'leaderboard_admin'])->name('dashboard');
+    Route::put('/update-status-recruitment', [ListController::class, 'update_status']);
+    Route::delete('/reset-data', [ListController::class, 'delete_data_test']);
     Route::get('/hrd/list-kandidat-terbaik', [ListController::class, 'index']);
     Route::get('/hrd/detail-kandidat/{id}', [ListController::class, 'detail_kandidat']);
 });

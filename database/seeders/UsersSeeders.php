@@ -14,6 +14,14 @@ class UsersSeeders extends Seeder
      */
     public function run(): void
     {
+        DB::table('status_recruitment')->insert([
+            [
+                'status' => 'in_progress',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
+
         DB::table('users')->insert([
             [
                 'name' => 'HRD',

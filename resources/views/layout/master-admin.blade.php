@@ -49,7 +49,7 @@
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>
-                                <span class="hide-menu">List Kandidat Terbaik</span>
+                                <span class="hide-menu">List Kandidat</span>
                             </a>
                         </li>
                     </ul>

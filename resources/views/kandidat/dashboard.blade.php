@@ -14,7 +14,7 @@
                             <h5 class="card-title fw-semibold">Leaderboard Kandidat</h5>
                         </div>
                     </div>
-                    <div class="table-responsive rounded-3">
+                    <div class="table-responsive rounded-3 table-container">
                         <table class="table table-striped">
                             <thead>
                                 <tr class="text-center bg-primary text-white">
@@ -31,14 +31,23 @@
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->hasil_akhir }}</td>
                                         <td>
-                                            <a href="/hrd/detail-kandidat/{{ $item->user->id }}"
-                                                class="btn btn-primary text-white btn-sm">Detail</a>
+                                            @if ($status->status == 'in_progress')
+                                                <button class="btn btn-primary text-white btn-sm" disabled>Detail</button>
+                                            @else
+                                                <a href="/hrd/detail-kandidat/{{ $item->user->id }}"
+                                                    class="btn btn-primary text-white btn-sm">Detail</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
+                    @if ($status->status == 'in_progress')
+                        <div class="d-flex justify-content-start">
+                            <p class="fw-bold"><span class="text-danger">* &nbsp;</span>Leaderboard belum bisa di lihat karena proses recruitment masih berjalan</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -59,23 +68,36 @@
                                         @endif
                                     </h4>
                                     <div class="d-flex align-items-center mb-3">
-                                        <span
-                                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="icon icon-tabler icon-tabler-progress-alert" width="20"
-                                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
-                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M10 20.777a8.942 8.942 0 0 1 -2.48 -.969" />
-                                                <path d="M14 3.223a9.003 9.003 0 0 1 0 17.554" />
-                                                <path d="M4.579 17.093a8.961 8.961 0 0 1 -1.227 -2.592" />
-                                                <path d="M3.124 10.5c.16 -.95 .468 -1.85 .9 -2.675l.169 -.305" />
-                                                <path d="M6.907 4.579a8.954 8.954 0 0 1 3.093 -1.356" />
-                                                <path d="M12 8v4" />
-                                                <path d="M12 16v.01" />
-                                            </svg>
-                                        </span>
-                                        <p class="fs-3 mb-0">Proses Recruitment Masih Berjalan</p>
+                                        @if ($status->status == 'in_progress')
+                                            <span
+                                                class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-refresh-dot">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                                                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                                                    <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                                </svg>
+                                            </span>
+                                            <p class="fs-3 mb-0">Proses Recruitment Masih Berjalan</p>
+                                        @else
+                                            <span
+                                                class="me-1 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-refresh-off">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M20 11a8.1 8.1 0 0 0 -11.271 -6.305m-2.41 1.624a8.083 8.083 0 0 0 -1.819 2.681m-.5 -4v4h4" />
+                                                    <path d="M4 13a8.1 8.1 0 0 0 13.671 4.691m2.329 -1.691v-1h-1" />
+                                                    <path d="M3 3l18 18" />
+                                                </svg>
+                                            </span>
+                                            <p class="fs-3 mb-0">Proses Recruitment Ditutup</p>
+                                        @endif
                                     </div>
                                     @if (Auth::user()->results == null)
                                         <div class="d-flex justify-content-start">
@@ -113,12 +135,44 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
-                                <a href="/test" class="btn btn-primary">Start Test</a>
+                                @if ($status->status == 'in_progress')
+                                    <a href="/test" class="btn btn-primary">Start Test</a>
+                                @else
+                                    <button class="btn btn-primary" disabled>Start Test</button>
+                                @endif
                             </div>
+                            @if ($status->status == 'closed')
+                                <div class="d-flex justify-content-start mt-3">
+                                    <p class="fw-bold"><span class="text-danger">* &nbsp;</span>Proses Recruitment Sudah
+                                        Tutup</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <input type="hidden" name="status" id="status" value="{{ $status->status }}">
 @endsection
+
+@push('styles')
+    <style>
+        /* Blur style */
+        .table-container.blur {
+            filter: blur(4px);
+        }
+    </style>
+@endpush
+
+@push('scripts')
+    <script>
+        var statusValue = document.getElementById('status').value;
+
+        if (statusValue == 'in_progress') {
+            document.querySelector('.table-container').classList.add('blur');
+        } else {
+            document.querySelector('.table-container').classList.remove('blur');
+        }
+    </script>
+@endpush
