@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\ManageAdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,11 @@ Route::group(['middleware' => 'role:hrd'], function () {
     Route::delete('/reset-data', [ListController::class, 'delete_data_test']);
     Route::get('/hrd/list-kandidat-terbaik', [ListController::class, 'index']);
     Route::get('/hrd/detail-kandidat/{id}', [ListController::class, 'detail_kandidat']);
+
+    Route::get('/hrd/manage-admin', [ManageAdminController::class, 'index']);
+    Route::post('/add-admin', [ManageAdminController::class, 'store']);
+    Route::put('/update-admin/{id}', [ManageAdminController::class, 'update']);
+    Route::delete('/delete-admin/{id}', [ManageAdminController::class, 'destroy']);
 });
 
 //routes untuk kandidat
