@@ -82,4 +82,11 @@ class ProfileController extends Controller
         $data->save();
         return redirect()->back()->with('success', 'Password Berhasil Diperbarui');
     }
+
+    public function detail_profile_user($id)
+    {
+        $data = User::find($id);
+
+        return view('kandidat.detail_profile', ['data' => $data]);
+    }
 }

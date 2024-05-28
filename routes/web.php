@@ -46,6 +46,7 @@ Route::group(['middleware' => 'role:hrd'], function () {
 //routes untuk kandidat
 Route::group(['middleware' => 'role:kandidat'], function () {
     Route::get('/kandidat/dashboard', [ListController::class, 'leaderboard']);
+    Route::get('/kandidat/detail-kandidat/{id}', [ProfileController::class, 'detail_profile_user']);
     Route::get('/kandidat/profile', function(){
         return view('kandidat.profile');
     });

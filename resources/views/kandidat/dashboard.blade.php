@@ -34,7 +34,7 @@
                                             @if ($status->status == 'in_progress')
                                                 <button class="btn btn-primary text-white btn-sm" disabled>Detail</button>
                                             @else
-                                                <a href="/hrd/detail-kandidat/{{ $item->user->id }}"
+                                                <a href="/kandidat/detail-kandidat/{{ $item->user->id }}"
                                                     class="btn btn-primary text-white btn-sm">Detail</a>
                                             @endif
                                         </td>

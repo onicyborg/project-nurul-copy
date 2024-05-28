@@ -1,7 +1,7 @@
-@extends('layout.master-admin')
+@extends('layout.master-user')
 
 @section('title')
-    Profile
+    Profile - {{ $data->name }}
 @endsection
 
 @section('content')
