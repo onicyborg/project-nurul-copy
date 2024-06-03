@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Results;
+use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -64,6 +65,24 @@ class AnswerController extends Controller
             14 => 5,
             15 => 5,
         ];
+
+        $test = new Test();
+        $test->soal_1 = $request->pertanyaan_1;
+        $test->soal_2 = $request->pertanyaan_2;
+        $test->soal_3 = $request->pertanyaan_3;
+        $test->soal_4 = $request->pertanyaan_4;
+        $test->soal_5 = $request->pertanyaan_5;
+        $test->soal_6 = $request->pertanyaan_6;
+        $test->soal_7 = $request->pertanyaan_7;
+        $test->soal_8 = $request->pertanyaan_8;
+        $test->soal_9 = $request->pertanyaan_9;
+        $test->soal_10 = $request->pertanyaan_10;
+        $test->soal_11= $request->pertanyaan_11;
+        $test->soal_12 = $request->pertanyaan_12;
+        $test->soal_13 = $request->pertanyaan_13;
+        $test->soal_14 = $request->pertanyaan_41;
+        $test->soal_15 = $request->pertanyaan_15;
+        $test->user_id = Auth::id();
 
         $total_score = 0;
 

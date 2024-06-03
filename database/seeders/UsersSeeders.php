@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Log;
 
 class UsersSeeders extends Seeder
 {
@@ -195,86 +197,102 @@ class UsersSeeders extends Seeder
             ]
         ]);
 
-        DB::table('results')->insert([
-            [
-                'hasil_akhir' => 3.75,
-                'user_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 2.65,
-                'user_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 2.85,
-                'user_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 2.95,
-                'user_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 4,
-                'user_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 3.25,
-                'user_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 3.10,
-                'user_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 3.15,
-                'user_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 3.35,
-                'user_id' => 10,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 3.40,
-                'user_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 2.50,
-                'user_id' => 12,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 2.40,
-                'user_id' => 13,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'hasil_akhir' => 2.10,
-                'user_id' => 14,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        ]);
+        $faker = Faker::create();
+
+        for ($i = 2; $i <= 13; $i++) {
+            DB::table('test')->insert([
+                'soal_1' => $faker->numberBetween(1, 4),
+                'soal_2' => $faker->numberBetween(1, 4),
+                'soal_3' => $faker->numberBetween(1, 4),
+                'soal_4' => $faker->numberBetween(1, 4),
+                'soal_5' => $faker->numberBetween(1, 4),
+                'soal_6' => $faker->numberBetween(1, 4),
+                'soal_7' => $faker->numberBetween(1, 4),
+                'soal_8' => $faker->numberBetween(1, 4),
+                'soal_9' => $faker->numberBetween(1, 4),
+                'soal_10' => $faker->numberBetween(1, 4),
+                'soal_11' => $faker->numberBetween(1, 4),
+                'soal_12' => $faker->numberBetween(1, 4),
+                'soal_13' => $faker->numberBetween(1, 4),
+                'soal_14' => $faker->numberBetween(1, 4),
+                'soal_15' => $faker->numberBetween(1, 4),
+                'user_id' => $i
+            ]);
+        }
+
+        $tests = DB::table('test')->get();
+
+        $idealValues = [
+            1 => 4,
+            2 => 4,
+            3 => 4,
+            4 => 4,
+            5 => 4,
+            6 => 4,
+            7 => 4,
+            8 => 4,
+            9 => 4,
+            10 => 4,
+            11 => 4,
+            12 => 4,
+            13 => 4,
+            14 => 4,
+            15 => 4,
+        ];
+
+        $bobots = [
+            1 => 10,
+            2 => 15,
+            3 => 10,
+            4 => 10,
+            5 => 5,
+            6 => 5,
+            7 => 5,
+            8 => 5,
+            9 => 5,
+            10 => 5,
+            11 => 5,
+            12 => 5,
+            13 => 5,
+            14 => 5,
+            15 => 5,
+        ];
+
+        foreach ($tests as $test) {
+            $total_score = 0;
+
+            for ($i = 1; $i <= 15; $i++) {
+                $jawaban = $test->{"soal_$i"};
+                $idealValue = $idealValues[$i];
+                $gap = $idealValue - $jawaban;
+
+                // Convert gap to score
+                if ($gap == 0) {
+                    $score = 5;
+                } elseif (abs($gap) == 1) {
+                    $score = 4;
+                } elseif (abs($gap) == 2) {
+                    $score = 3;
+                } elseif (abs($gap) == 3) {
+                    $score = 2;
+                } else {
+                    $score = 1;
+                }
+
+                // Multiply the score by the weight of the criteria
+                $bobot = $bobots[$i];
+                $total_score += $score * ($bobot / 100);
+            }
+
+            // Log the total score before saving to the database
+            Log::info('Total Score: ' . $total_score);
+
+            // Store the candidate's total score in the database
+            DB::table('results')->insert([
+                'hasil_akhir' => $total_score,
+                'user_id' => $test->user_id,
+            ]);
+        }
 
     }
 }
