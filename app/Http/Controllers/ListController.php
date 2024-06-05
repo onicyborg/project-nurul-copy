@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Results;
 use App\Models\StatusRecruitment;
+use App\Models\Test;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,8 +53,12 @@ class ListController extends Controller
     public function delete_data_test()
     {
         $data = Results::all();
+        $data2 = Test::all();
 
         foreach($data as $item){
+            $item->delete();
+        }
+        foreach($data2 as $item){
             $item->delete();
         }
 

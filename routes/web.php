@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\ManageAdminController;
+use App\Http\Controllers\ManageKandidatController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,11 @@ Route::group(['middleware' => 'role:hrd'], function () {
     Route::post('/add-admin', [ManageAdminController::class, 'store']);
     Route::put('/update-admin/{id}', [ManageAdminController::class, 'update']);
     Route::delete('/delete-admin/{id}', [ManageAdminController::class, 'destroy']);
+
+    Route::get('/hrd/manage-kandidat', [ManageKandidatController::class, 'index']);
+    Route::post('/add-kandidat', [ManageKandidatController::class, 'store']);
+    Route::put('/update-kandidat/{id}', [ManageKandidatController::class, 'update']);
+    Route::delete('/delete-kandidat/{id}', [ManageKandidatController::class, 'destroy']);
 });
 
 //routes untuk kandidat
