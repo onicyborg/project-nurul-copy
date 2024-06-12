@@ -83,6 +83,7 @@ class AnswerController extends Controller
         $test->soal_14 = $request->pertanyaan_41;
         $test->soal_15 = $request->pertanyaan_15;
         $test->user_id = Auth::id();
+        $test->save();
 
         $total_score = 0;
 
