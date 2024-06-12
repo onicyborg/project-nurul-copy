@@ -80,7 +80,7 @@ class AnswerController extends Controller
         $test->soal_11= $request->pertanyaan_11;
         $test->soal_12 = $request->pertanyaan_12;
         $test->soal_13 = $request->pertanyaan_13;
-        $test->soal_14 = $request->pertanyaan_41;
+        $test->soal_14 = $request->pertanyaan_14;
         $test->soal_15 = $request->pertanyaan_15;
         $test->user_id = Auth::id();
         $test->save();
