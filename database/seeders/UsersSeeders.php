@@ -37,10 +37,10 @@ class UsersSeeders extends Seeder
 
         DB::table('users')->insert([
             [
-                'name' => 'Akhmad Fauzi',
-                'email' => 'akhmadfauzy40@gmail.com',
-                'nomor_hp' => '081347890520',
-                'password' => Hash::make('inipassword'),
+                'name' => 'Kandidat',
+                'email' => 'kandidat@gmail.com',
+                'nomor_hp' => '081308130813',
+                'password' => Hash::make('kandidat'),
                 'role' => 'kandidat',
                 'gender' => 'pria',
                 'tempat_lahir' => 'Martapura',
